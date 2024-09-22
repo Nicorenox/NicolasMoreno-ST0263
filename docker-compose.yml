@@ -2,31 +2,44 @@ version: '3.8'
 
 services:
   tracker:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "50052:50052"
-    command: python tracker.py
 
   node1:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "50001:50001"
-    command: python server.py 50001
+    depends_on:
+      - tracker
 
   node2:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "50002:50002"
-    command: python server.py 50002
+    depends_on:
+      - tracker
 
   node3:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "50003:50003"
-    command: python server.py 50003
+    depends_on:
+      - tracker
 
   node4:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "50004:50004"
-    command: python server.py 50004
+    depends_on:
+      - tracker
