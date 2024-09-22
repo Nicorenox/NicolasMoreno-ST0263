@@ -28,7 +28,7 @@ Este sistema está diseñado bajo un enfoque de microservicios en el que cada no
 - A través de la operación `put(file)`, un nodo puede enviar un archivo a otros nodos de la red.
 - La operación `get(file)` permite descargar un archivo desde un nodo disponible que lo tenga almacenado.
 
-### 4. Transferencia Dummy
+### 4. Transferencia
 - Aunque se implementó la transferencia de archivos reales, el sistema simula la replicación mediante la comunicación gRPC entre nodos.
 
 ### 5. Concurrencia de Múltiples Peticiones
@@ -70,14 +70,14 @@ Este diagrama ilustra la vista general del sistema, mostrando los diferentes com
 Este diagrama describe el flujo de cómo un nodo se une a la red y cómo la abandona.
 
 **Funcionamiento del Join**:
-1. El nodo se inicia.
-2. Se comunica con el tracker usando gRPC para enviar una solicitud de "join".
-3. El tracker registra el nodo en su lista de nodos activos.
-4. El tracker devuelve una confirmación y una lista de archivos o nodos relevantes.
+- El nodo se inicia.
+- Se comunica con el tracker usando gRPC para enviar una solicitud de "join".
+- El tracker registra el nodo en su lista de nodos activos.
+- El tracker devuelve una confirmación y una lista de archivos o nodos relevantes.
 
 **Funcionamiento del Leave**:
-1. El nodo notifica al tracker que desea salir de la red.
-2. El tracker elimina el nodo de su lista de nodos activos.
+- El nodo notifica al tracker que desea salir de la red.
+- El tracker elimina el nodo de su lista de nodos activos.
 
 ### 3. Diagrama de Proceso de Búsqueda de Archivos
 ![Diagrama de Búsqueda](img/diagrama-busqueda.png)
@@ -95,10 +95,10 @@ Este diagrama explica cómo funciona la búsqueda de archivos en la red P2P.
 Este diagrama ilustra el proceso de subir un archivo a la red P2P.
 
 **Funcionamiento**:
-1. El cliente envía un archivo al nodo mediante una petición `PutFileRequest`.
-2. El nodo almacena el archivo en su sistema.
-3. El nodo notifica al tracker sobre el nuevo archivo disponible.
-4. El tracker actualiza su lista de archivos disponibles en la red.
+- El cliente envía un archivo al nodo mediante una petición `PutFileRequest`.
+- El nodo almacena el archivo en su sistema.
+- El nodo notifica al tracker sobre el nuevo archivo disponible.
+- El tracker actualiza su lista de archivos disponibles en la red.
 
 ### 5. Diagrama de Proceso de Recuperación de Archivos
 ![Diagrama de Recuperación](img/diagrama-get-file.png)
@@ -106,10 +106,10 @@ Este diagrama ilustra el proceso de subir un archivo a la red P2P.
 Este diagrama describe cómo se recupera un archivo de la red.
 
 **Funcionamiento**:
-1. El cliente envía una solicitud al nodo para obtener un archivo (`GetFileRequest`).
-2. Si el archivo está en el nodo, este lo devuelve al cliente.
-3. Si el archivo no está, el nodo puede reenviar la solicitud a otros nodos.
-4. El cliente recibe el archivo y lo descarga.
+- El cliente envía una solicitud al nodo para obtener un archivo (`GetFileRequest`).
+- Si el archivo está en el nodo, este lo devuelve al cliente.
+- Si el archivo no está, el nodo puede reenviar la solicitud a otros nodos.
+- El cliente recibe el archivo y lo descarga.
 
 ### 6. Diagrama de Transferencia de Archivos
 ![Diagrama de Transferencia](img/diagrama-transferencia.png)
