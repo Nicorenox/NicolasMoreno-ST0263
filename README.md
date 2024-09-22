@@ -147,4 +147,7 @@ cd sr0263
 ```
 ![Vista del Funcionamiento del Tracker/Nodos y Prueba de Subida y Descarga de Archivos](https://github.com/user-attachments/assets/99e2f757-f568-42a2-b186-e7fb9680d535)
 
+## Author
+
+- Developed by [Nicolas Moreno Lopez](https://github.com/Nicorenox)
 
