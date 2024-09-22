@@ -32,7 +32,7 @@ def serve(port):
     print(f"Peer server started, listening on port {port}")
 
     # Aquí asegúrate de que apunte al contenedor del tracker (p.ej., 'tracker:50052')
-    register_with_tracker('tracker:50052', f'server:{port}')
+    register_with_tracker('sr0263-tracker:50052', f'sr0263-node1:{port}')
 
     try:
         while True:
