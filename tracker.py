@@ -66,8 +66,7 @@ class TrackerService(pb2_grpc.PeerServiceServicer):
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     pb2_grpc.add_PeerServiceServicer_to_server(TrackerService(), server)
-    # Cambiar '[::]' por '0.0.0.0' para funcionar correctamente dentro de Docker
-    server.add_insecure_port('0.0.0.0:50052')  
+    server.add_insecure_port('[::]:50052')
     server.start()
     print("Tracker started, listening on port 50052")
     try:
