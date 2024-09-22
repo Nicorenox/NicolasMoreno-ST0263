@@ -1,50 +1,34 @@
-version: '3.8'
-
+version: '3'
 services:
-  tracker:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  sr0263-tracker:
+    image: sr0263-tracker
     ports:
       - "50052:50052"
-    restart: always  # Para reiniciar automáticamente si falla
-
-  node1:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  
+  sr0263-node1:
+    image: sr0263-node1
     ports:
       - "50001:50001"
     depends_on:
-      - tracker
-    restart: on-failure  # Reiniciar solo si falla
+      - sr0263-tracker
 
-  node2:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  sr0263-node2:
+    image: sr0263-node2
     ports:
       - "50002:50002"
     depends_on:
-      - tracker
-    restart: on-failure
+      - sr0263-tracker
 
-  node3:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  sr0263-node3:
+    image: sr0263-node3
     ports:
       - "50003:50003"
     depends_on:
-      - tracker
-    restart: on-failure
+      - sr0263-tracker
 
-  node4:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  sr0263-node4:
+    image: sr0263-node4
     ports:
       - "50004:50004"
     depends_on:
-      - tracker
-    restart: on-failure
+      - sr0263-tracker
