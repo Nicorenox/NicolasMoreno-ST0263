@@ -31,7 +31,7 @@ def serve(port):
     server.start()
     print(f"Peer server started, listening on port {port}")
 
-    register_with_tracker('localhost:50052', f'localhost:{port}')
+    register_with_tracker('tracker:50052', f'localhost:{port}')
 
     try:
         while True:
