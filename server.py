@@ -27,12 +27,11 @@ def register_with_tracker(tracker_address, node_address):
 def serve(port):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     pb2_grpc.add_PeerServiceServicer_to_server(PeerService(), server)
-    server.add_insecure_port(f'0.0.0.0:{port}')  # Cambia a 0.0.0.0
+    server.add_insecure_port(f'[::]:{port}')
     server.start()
     print(f"Peer server started, listening on port {port}")
 
-    # Aquí asegúrate de que apunte al contenedor del tracker (p.ej., 'tracker:50052')
-    register_with_tracker('sr0263-tracker:50052', f'sr0263-node1:{port}')
+    register_with_tracker('localhost:50052', f'localhost:{port}')
 
     try:
         while True:
