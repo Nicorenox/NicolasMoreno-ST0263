@@ -7,8 +7,7 @@ services:
       dockerfile: Dockerfile
     ports:
       - "50052:50052"
-    command: ["python3", "tracker.py"]  # Asegúrate de ejecutar tracker.py
-    restart: always
+    restart: always  # Para reiniciar automáticamente si falla
 
   node1:
     build:
@@ -18,7 +17,7 @@ services:
       - "50001:50001"
     depends_on:
       - tracker
-    command: ["sh", "-c", "sleep 5; python3 server.py"]
+    restart: on-failure  # Reiniciar solo si falla
 
   node2:
     build:
@@ -28,7 +27,7 @@ services:
       - "50002:50002"
     depends_on:
       - tracker
-    command: ["sh", "-c", "sleep 5; python3 server.py"]
+    restart: on-failure
 
   node3:
     build:
@@ -38,7 +37,7 @@ services:
       - "50003:50003"
     depends_on:
       - tracker
-    command: ["sh", "-c", "sleep 5; python3 server.py"]
+    restart: on-failure
 
   node4:
     build:
@@ -48,4 +47,4 @@ services:
       - "50004:50004"
     depends_on:
       - tracker
-    command: ["sh", "-c", "sleep 5; python3 server.py"]
+    restart: on-failure
