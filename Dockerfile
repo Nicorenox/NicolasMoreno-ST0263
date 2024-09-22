@@ -1,17 +1,20 @@
-# Usa una imagen de Python
-FROM python:3.9
+# Usar una imagen base de Python
+FROM python:3.9-slim
 
-# Establece el directorio de trabajo
-WORKDIR /usr/src/app
+# Establecer el directorio de trabajo
+WORKDIR /app
 
-# Copia los archivos necesarios al contenedor
+# Copiar el archivo requirements.txt al contenedor
+COPY requirements.txt .
+
+# Instalar las dependencias
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copiar todo el código de tu proyecto al contenedor
 COPY . .
 
-# Instala las dependencias necesarias
-RUN pip install grpcio grpcio-tools
+# Exponer el puerto del tracker y los nodos
+EXPOSE 50052 50001 50002 50003 50004
 
-# Expone el puerto para el tracker
-EXPOSE 50052
-
-# Expone los puertos para los nodos
-EXPOSE 50001 50002 50003 50004
+# Comando por defecto para ejecutar el tracker
+CMD ["python", "tracker.py"]
