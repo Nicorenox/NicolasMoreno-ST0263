@@ -4,7 +4,7 @@ import p2p_pb2 as pb2
 import sys
 
 def upload_file(filename):
-    with grpc.insecure_channel('localhost:50052') as channel:
+    with grpc.insecure_channel('sr0263-tracker:50052') as channel:
         stub = pb2_grpc.PeerServiceStub(channel)
         
         with open(filename, 'rb') as f:
