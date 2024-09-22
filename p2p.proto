@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+service PeerService {
+    rpc JoinNetwork(JoinRequest) returns (JoinResponse);
+    rpc LeaveNetwork(LeaveRequest) returns (LeaveResponse);
+    rpc GetFile(GetFileRequest) returns (GetFileResponse);
+    rpc PutFile(PutFileRequest) returns (PutFileResponse);
+    rpc ListNodes(Empty) returns (ListNodesResponse);
+}
+
+message JoinRequest {
+    string address = 1;
+    repeated string available_files = 2;  // Lista de archivos disponibles en este nodo
+}
+
+message JoinResponse {
+    string message = 1;
+}
+
+message LeaveRequest {
+    string address = 1;
+}
+
+message LeaveResponse {
+    string message = 1;
+}
+
+message GetFileRequest {
+    string filename = 1;
+}
+
+message GetFileResponse {
+    bool success = 1;  // Indica si la operación fue exitosa
+    bytes filedata = 2;  // Archivo en formato binario si fue encontrado
+}
+
+message PutFileRequest {
+    string filename = 1;
+    bytes filedata = 2;
+}
+
+message PutFileResponse {
+    bool success = 1;  // Indica si el archivo fue almacenado exitosamente
+    string message = 2;
+}
+
+message ListNodesResponse {
+    repeated string addresses = 1;
+}
+
+message Empty {}

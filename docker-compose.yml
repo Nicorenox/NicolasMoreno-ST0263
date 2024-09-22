@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  tracker:
+    build: .
+    ports:
+      - "50052:50052"
+    command: python tracker.py
+
+  node1:
+    build: .
+    ports:
+      - "50001:50001"
+    command: python server.py 50001
+
+  node2:
+    build: .
+    ports:
+      - "50002:50002"
+    command: python server.py 50002
+
+  node3:
+    build: .
+    ports:
+      - "50003:50003"
+    command: python server.py 50003
+
+  node4:
+    build: .
+    ports:
+      - "50004:50004"
+    command: python server.py 50004
