@@ -144,5 +144,7 @@ cd sr0263
 /sr0263$ sudo docker ps  # Verificación de los contenedores en ejecución
 /sr0263$ python client.py --uploaod big_file.txt
 /sr0263$ python client.py --download big_file.txt prueba1.txt 
-
+```
+![Vista del Funcionamiento del Tracker/Nodos y Prueba de Subida y Descarga de Archivos](![WhatsApp Image 2024-09-21 at 11 50 23 PM](https://github.com/user-attachments/assets/99e2f757-f568-42a2-b186-e7fb9680d535)
+)
 
