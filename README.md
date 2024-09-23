@@ -34,6 +34,28 @@ Este sistema está diseñado bajo un enfoque de microservicios en el que cada no
 ### 5. Concurrencia de Múltiples Peticiones
 - El servidor está diseñado para manejar múltiples peticiones concurrentes, lo que permite que varios nodos interactúen entre sí al mismo tiempo.
 
+### 6. Algoritmo de Replicación Implementado:
+
+Cuando un archivo necesita ser replicado, el tracker identifica los nodos disponibles en la red.  
+El archivo se replica en uno o más nodos, siempre y cuando estos nodos no lo posean ya.
+
+Para replicar un archivo:
+
+1. El tracker identifica los nodos donde el archivo ya está almacenado.
+2. Se seleccionan nodos adicionales para la replicación del archivo.
+3. El archivo se recupera del nodo original utilizando la operación `GetFile` vía gRPC.
+4. Luego, el archivo es transferido a otros nodos utilizando la operación `PutFile`, asegurando que el archivo esté replicado en múltiples ubicaciones.
+
+### Explciacion del Código (Replicación Automática):
+
+El método `ReplicateFiles` verifica si un archivo está presente en un nodo y luego lo replica en otros nodos disponibles de la siguiente manera:
+
+1. Primero, se verifica si el archivo ya está replicado en algún nodo dentro de la red. Si no, el archivo es recuperado mediante `GetFile`.
+2. A continuación, el archivo es replicado en otros nodos utilizando `PutFile`, asegurando que no se replique en el nodo de origen.
+3. Cada vez que el archivo se replica exitosamente, se muestra un mensaje de confirmación (`File {filename} replicated to {target_node}`).
+
+Este algoritmo garantiza que, si un nodo se desconecta, los archivos almacenados en él puedan ser replicados en otros nodos activos, manteniendo la disponibilidad del archivo en la red.
+
 ## Estructura del Proyecto
 
 - **Dockerfile**: Archivo para crear la imagen de Docker con las configuraciones necesarias para el proyecto.
