@@ -1,4 +1,3 @@
-# sr0263
 # Sistema P2P para Compartición de Archivos
 
 Este proyecto es parte del reto 1 de diseño e implementación de un sistema P2P, en el cual cada nodo (o proceso) contiene uno o más microservicios para implementar las funcionalidades de un sistema de compartición de archivos completamente distribuido y descentralizado, similar a la red BitTorrent.
@@ -126,7 +125,7 @@ sudo apt install docker.io -y
 sudo usermod -a -G docker ubuntu
 sudo systemctl enable docker
 sudo apt install -y git
-git clone https://github.com/Nicorenox/sr0263
+git clone https://github.com/Nicorenox/NicolasMoreno-ST0263
 cd sr0263
 /sr0263$ sudo systemctl start docker
 /sr0263$ pip install -r requirements.txt --break-system-packages
