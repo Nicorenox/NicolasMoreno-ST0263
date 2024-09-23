@@ -72,7 +72,7 @@ Este algoritmo garantiza que, si un nodo se desconecta, los archivos almacenados
 ## Diagramas
 
 ### 1. Diagrama de Arquitectura General del Sistema P2P
-![Diagrama de Arquitectura General](img/diagrama.png)
+![Cleinte](https://github.com/user-attachments/assets/7901bb81-d2dd-483a-addc-8924888a9041)
 
 Este diagrama ilustra la vista general del sistema, mostrando los diferentes componentes y cómo se comunican entre ellos.
 
@@ -86,10 +86,12 @@ Este diagrama ilustra la vista general del sistema, mostrando los diferentes com
 - Los nodos se comunican con el tracker para registrarse o abandonar la red.
 - Los clientes se conectan a los nodos a través de gRPC para realizar las operaciones `put(file)` y `get(file)`.
 
-### 2. Diagrama de Proceso de Join/Leave
-![Diagrama de Join/Leave](img/diagrama-join-leave.png)
+### 2. Diagramas de Proceso de Join/Leave
 
-Este diagrama describe el flujo de cómo un nodo se une a la red y cómo la abandona.
+![Leave-Join](https://github.com/user-attachments/assets/71c26662-6dd2-4d98-941a-e044435951b4)
+![Funcionameinto-Tracker-y-comunicacion](https://github.com/user-attachments/assets/754a1870-2c89-488a-ac7f-4cc3990705bd)
+
+Estos diagramas describen el flujo de cómo un nodo se une a la red y cómo la abandona.
 
 **Funcionamiento del Join**:
 - El nodo se inicia.
@@ -100,52 +102,18 @@ Este diagrama describe el flujo de cómo un nodo se une a la red y cómo la aban
 **Funcionamiento del Leave**:
 - El nodo notifica al tracker que desea salir de la red.
 - El tracker elimina el nodo de su lista de nodos activos.
+![leave-network](https://github.com/user-attachments/assets/169267b6-f55d-461b-988c-eb7cf799bc18)
 
-### 3. Diagrama de Proceso de Búsqueda de Archivos
-![Diagrama de Búsqueda](img/diagrama-busqueda.png)
 
-Este diagrama explica cómo funciona la búsqueda de archivos en la red P2P.
-
-**Funcionamiento**:
-- El cliente envía una solicitud al nodo para buscar un archivo (usando `GetFileRequest`).
-- Si el archivo no está en ese nodo, el nodo puede consultar otros nodos o el tracker.
-- Si se encuentra el archivo, se devuelve una respuesta con la ubicación del archivo.
-
-### 4. Diagrama de Proceso de Almacenamiento de Archivos
-![Diagrama de Almacenamiento](img/diagrama-put-file.png)
-
-Este diagrama ilustra el proceso de subir un archivo a la red P2P.
+### 3. Diagrama de replicación de archivos
+Este diagrama muesta cómo se replica un archivo cuando un nodo se desconecta, asegurando que el archivo no se pierda.
+![Replicacion](https://github.com/user-attachments/assets/16347125-68a9-43c3-bb42-178aac8124fe)
 
 **Funcionamiento**:
-- El cliente envía un archivo al nodo mediante una petición `PutFileRequest`.
-- El nodo almacena el archivo en su sistema.
-- El nodo notifica al tracker sobre el nuevo archivo disponible.
-- El tracker actualiza su lista de archivos disponibles en la red.
+- Desconexión de nodo: El nodo envía una solicitud LeaveNetwork al tracker.
+- El tracker revisa qué archivos estaban en el nodo desconectado.
+- El tracker selecciona un nuevo nodo y usa gRPC para replicar el archivo.
 
-### 5. Diagrama de Proceso de Recuperación de Archivos
-![Diagrama de Recuperación](img/diagrama-get-file.png)
-
-Este diagrama describe cómo se recupera un archivo de la red.
-
-**Funcionamiento**:
-- El cliente envía una solicitud al nodo para obtener un archivo (`GetFileRequest`).
-- Si el archivo está en el nodo, este lo devuelve al cliente.
-- Si el archivo no está, el nodo puede reenviar la solicitud a otros nodos.
-- El cliente recibe el archivo y lo descarga.
-
-### 6. Diagrama de Transferencia de Archivos
-![Diagrama de Transferencia](img/diagrama-transferencia.png)
-
-Este diagrama describe cómo un archivo fluye desde un nodo hasta otro o desde un nodo al cliente. Se puede mostrar el proceso dummy, donde la arquitectura del sistema se estructura para la transferencia, pero no se realiza la transmisión real del archivo.
-
-### 7. Diagrama de Comunicación Concurrente
-![Diagrama de Comunicación Concurrente](img/diagrama-concurrencia.png)
-
-Este diagrama ilustra cómo un nodo puede manejar múltiples peticiones concurrentes desde varios clientes o nodos.
-
-**Funcionamiento**:
-- Cada nodo actúa como un servidor gRPC que puede recibir múltiples peticiones al mismo tiempo.
-- Se ilustra cómo los procesos de `PutFile` y `GetFile` pueden ejecutarse de manera simultánea sin bloquearse, utilizando hilos o asincronía.
 
 ## Instalación y Ejecución
 
