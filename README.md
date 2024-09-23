@@ -138,6 +138,9 @@ cd sr0263
 - Vista del Funcionamiento del Tracker/Nodos y Prueba de Subida y Descarga de Archivos
 ![Vista del Funcionamiento del Tracker/Nodos y Prueba de Subida y Descarga de Archivos](https://github.com/user-attachments/assets/99e2f757-f568-42a2-b186-e7fb9680d535)
 
+## Video explicativo
+https://1drv.ms/v/s!AgcSjM0T0apChQQZsO28745O6i1h?e=ofgAEa
+
 ## Author
 
 - Developed by [Nicolas Moreno Lopez](https://github.com/Nicorenox)
