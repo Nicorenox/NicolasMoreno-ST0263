@@ -46,7 +46,7 @@ Para replicar un archivo:
 3. El archivo se recupera del nodo original utilizando la operación `GetFile` vía gRPC.
 4. Luego, el archivo es transferido a otros nodos utilizando la operación `PutFile`, asegurando que el archivo esté replicado en múltiples ubicaciones.
 
-### Explciacion del Código (Replicación Automática):
+### Explicación del Código (Replicación Automática):
 
 El método `ReplicateFiles` verifica si un archivo está presente en un nodo y luego lo replica en otros nodos disponibles de la siguiente manera:
 
