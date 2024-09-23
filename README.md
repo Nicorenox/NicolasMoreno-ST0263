@@ -135,7 +135,7 @@ cd sr0263
 /sr0263$ python client.py --uploaod big_file.txt
 /sr0263$ python client.py --download big_file.txt prueba1.txt 
 ```
--Vista del Funcionamiento del Tracker/Nodos y Prueba de Subida y Descarga de Archivos
+- Vista del Funcionamiento del Tracker/Nodos y Prueba de Subida y Descarga de Archivos
 ![Vista del Funcionamiento del Tracker/Nodos y Prueba de Subida y Descarga de Archivos](https://github.com/user-attachments/assets/99e2f757-f568-42a2-b186-e7fb9680d535)
 
 ## Author
